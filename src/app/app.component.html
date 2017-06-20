@@ -1,10 +1,7 @@
 <div>
   <!--<pre>{{nodes$|async|json}}</pre>-->
 
-  <ul>
-    <li *ngFor="let n of nodes$ | async">
-      {{n.title}}
-    </li>
-  </ul>
-  
+  <app-tree-nodes [nodes$]="nodes$">
+          
+ </app-tree-nodes>
 </div>

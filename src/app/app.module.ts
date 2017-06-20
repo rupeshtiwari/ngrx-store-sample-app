@@ -7,10 +7,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { reducer } from './store';
+import { TreeNodesComponent } from 'app/tree/tree-nodes.component';
+import { TreeNodeComponent } from 'app/tree/tree-node.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TreeNodesComponent,
+    TreeNodeComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { reducer } from 'app/reducer';
+import { reducer } from './store';
 
 @NgModule({
   declarations: [

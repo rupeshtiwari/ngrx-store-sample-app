@@ -11,26 +11,26 @@ import * as fromRoot from '../reducers';
     selector: 'app-todo-container',
     template: `
     <h2>Todos</h2>
-    <pre>{{todos$ | async | json}}</pre>
+   
      <app-new-todo-input (create)="addTodo($event)"></app-new-todo-input>
     ========================
     <app-todo-list 
                 [todos$]="todos$ | async">
     </app-todo-list>
+     <pre>{{todos$ | async | json}}</pre>
   `,
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TodoContainerComponent {
     @Input() todos$: Observable<Todo[]>;
 
     constructor(private store: Store<fromRoot.AppState>) {
-        console.log('initialized todo container');
+        console.log('initialized', 'TodoContainerComponent');
         this.todos$ = store.select(fromRoot.getAllTodos);
     }
-
-    addTodo(text) {
-        this.store.dispatch(fromActions.addTodo({ text: text }));
+    addTodo(todo) {
+        this.store.dispatch(fromActions.addTodo(todo));
     }
 }
 

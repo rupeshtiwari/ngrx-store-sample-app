@@ -16,5 +16,8 @@ import { Observable } from 'rxjs/Observable';
 
 export class TodoListComponent {
     @Input() todos$;
+    constructor() {
+        console.log('initialized','TodoListComponent');
+    }
 }
 

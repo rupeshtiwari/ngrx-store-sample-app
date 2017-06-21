@@ -11,6 +11,7 @@ import { EventEmitter, Component, Output, ChangeDetectionStrategy } from '@angul
   `,
    changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class NewTodoInputComponent {
   @Output() create = new EventEmitter();
   saveTodo(el) {

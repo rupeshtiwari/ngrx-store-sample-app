@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { Action, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core';
 import { storeLogger } from 'ngrx-store-logger';
-import * as R from 'ramda';
+import { append, prop, assoc, lensPath, over, lens } from 'ramda';
 import * as fromActions from '../actions/todo';
 
 export type Path = any[];
@@ -24,13 +24,13 @@ export const initialState = {
 export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case fromActions.ADD_TODO:
-            return R.append(action.payload, state);
+            return over(lensPath(['todos']), (todos) => append(action.payload, todos), state);
         default:
             return state;
     }
 };
 
-export const getTodos = function (state: State) { debugger; return state.todos };
+export const getTodos = (state: State) => state.todos;
 
 
 

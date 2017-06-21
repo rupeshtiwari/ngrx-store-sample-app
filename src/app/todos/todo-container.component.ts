@@ -10,15 +10,19 @@ import * as fromRoot from '../reducers';
 @Component({
     selector: 'app-todo-container',
     template: `
-    <pre>{{todos$|async|json}}</pre>
- <app-new-todo-input (create)="addTodo($event)"></app-new-todo-input>
- <app-todo-list [todos$] ="todos$" > </app-todo-list>
+    <h2>Todos</h2>
+    <pre>{{todos$ | async | json}}</pre>
+     <app-new-todo-input (create)="addTodo($event)"></app-new-todo-input>
+    ========================
+    <app-todo-list 
+                [todos$]="todos$ | async">
+    </app-todo-list>
   `,
     changeDetection: ChangeDetectionStrategy.Default
 })
 
 export class TodoContainerComponent {
-    todos$: Observable<Todo[]>;
+    @Input() todos$: Observable<Todo[]>;
 
     constructor(private store: Store<fromRoot.AppState>) {
         console.log('initialized todo container');
@@ -26,7 +30,7 @@ export class TodoContainerComponent {
     }
 
     addTodo(text) {
-        this.store.dispatch(fromActions.addTodo(text));
+        this.store.dispatch(fromActions.addTodo({ text: text }));
     }
 }
 

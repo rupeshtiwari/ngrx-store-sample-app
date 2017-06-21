@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
     selector: 'app-todo-list',
     template: `
   <ul>
-    <li *ngFor="let todo of todos$ | async">
+    <li *ngFor="let todo of todos$">
         <app-todo [todo]="todo"></app-todo>
     </li>
   </ul>

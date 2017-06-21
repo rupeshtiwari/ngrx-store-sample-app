@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -7,9 +7,10 @@ import 'rxjs/add/observable/of';
     template: `
     <div *ngIf="node">
     {{node.title}}
-      <app-tree-nodes [nodes$]="treeNodes$|async" *ngIf="hasChildren"></app-tree-nodes>
+     
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TreeNodeComponent implements OnInit {

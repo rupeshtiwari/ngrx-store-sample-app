@@ -3,18 +3,18 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-tree-nodes',
+    selector: 'app-todo-list',
     template: `
   <ul>
-    <li *ngFor="let n of nodes$ | async">
-        <app-tree-node [node]="n"></app-tree-node>
+    <li *ngFor="let todo of todos$ | async">
+        <app-todo [todo]="todo"></app-todo>
     </li>
   </ul>
   `,
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class TreeNodesComponent {
-    @Input() nodes$;
+export class TodoListComponent {
+    @Input() todos$;
 }
 

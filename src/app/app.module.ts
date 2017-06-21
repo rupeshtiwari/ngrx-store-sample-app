@@ -6,15 +6,21 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { reducer } from './store';
+import { reducer } from './reducers';
 import { TreeNodesComponent } from 'app/tree/tree-nodes.component';
 import { TreeNodeComponent } from 'app/tree/tree-node.component';
+import { TodoListComponent } from 'app/todos/todo-list.component';
+import { TodoComponent } from 'app/todos/todo.component';
+import { NewTodoInputComponent } from 'app/todos/new-todo.component';
+import { TodoContainerComponent } from 'app/todos/todo-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TreeNodesComponent,
-    TreeNodeComponent
+    NewTodoInputComponent,
+    TodoListComponent,
+    TodoComponent,
+    TodoContainerComponent
   ],
   imports: [
     BrowserModule,

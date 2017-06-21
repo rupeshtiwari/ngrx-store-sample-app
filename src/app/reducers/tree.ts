@@ -3,7 +3,7 @@ import { Action, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core';
 import { storeLogger } from 'ngrx-store-logger';
 
-import * as fromActions from './actions';
+import * as fromActions from '../actions/tree';
 
 export type Path = any[];
 

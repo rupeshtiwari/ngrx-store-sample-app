@@ -11,11 +11,10 @@
     "e2e": "ng e2e",
     
     "build-prod": "ng build --prod",
-    "git-add": 
     "git-push": "git push", 
     "publish": "npm run gh-pages",
     "gh-pages": "gh-pages -d dist -b gh-pages",
-    "deploy": "npm run test & npm run build-prod & npm run git-push & npm run publish"
+    "deploy": "npm run build-prod & npm run git-push & npm run publish"
   },
   "private": true,
   "dependencies": {

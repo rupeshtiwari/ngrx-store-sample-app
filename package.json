@@ -14,7 +14,7 @@
     "git-push": "git push", 
     "publish": "npm run gh-pages",
     "gh-pages": "gh-pages -d dist -b gh-pages",
-    "deploy": "npm run build-prod & npm run git-push & npm run publish"
+    "deploy": "npm run build-prod & npm run git-push & npm run publish & npm run test"
   },
   "private": true,
   "dependencies": {

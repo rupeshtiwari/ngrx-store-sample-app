@@ -18,6 +18,8 @@ import { TodoContainerComponent } from 'app/todos/todo-container.component';
   declarations: [
     AppComponent,
     NewTodoInputComponent,
+    TreeNodesComponent,
+    TreeNodeComponent,
     TodoListComponent,
     TodoComponent,
     TodoContainerComponent

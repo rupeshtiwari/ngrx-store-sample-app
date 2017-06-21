@@ -9,10 +9,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    
     "build-prod": "ng build --prod",
-    "deploy": "npm run build-prod",
+    "git-push": "git commit", 
     "publish": "npm run gh-pages",
-    "gh-pages": "gh-pages -d dist -b gh-pages"
+    "gh-pages": "gh-pages -d dist -b gh-pages",
+    "deploy": "npm run build-prod & npm run git-push & npm run publish"
   },
   "private": true,
   "dependencies": {

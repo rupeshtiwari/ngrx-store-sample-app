@@ -56,7 +56,7 @@ export const initialState = {
     ]
 };
 
-export const reducerTree = (state = initialState, action: Action) => {
+export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case fromActions.LOAD:
             return state;

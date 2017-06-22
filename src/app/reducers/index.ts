@@ -5,17 +5,17 @@ import { combineReducers } from '@ngrx/store';
 import { createSelector } from 'reselect';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import { reducerTree, getNodes, State } from '../reducers/tree';
 import * as fromTree from '../reducers/tree';
 import * as fromTodos from '../reducers/todo';
 
 const reducers = {
     todos: fromTodos.reducer,
+    tree: fromTree.reducer
 };
 
 export interface AppState {
     todos: fromTodos.State;
-    tree: fromTree.State
+    tree: fromTree.State;
 }
 
 export const developmentReducer = compose(storeFreeze, storeLogger(), combineReducers)(reducers);

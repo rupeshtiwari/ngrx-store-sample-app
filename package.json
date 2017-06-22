@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "ng build --prod",
+    "build-prod": "ng build --prod --base-href 'https://roopkt.github.io/ngrx-store-sample-app/'",
     "git-push": "git push",
     "publish": "npm run gh-pages",
     "gh-pages": "gh-pages -d dist -b gh-pages",

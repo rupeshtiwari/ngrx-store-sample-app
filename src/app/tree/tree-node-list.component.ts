@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
     selector: 'app-tree-node-list',
     template: `
   <ul>
-    <li *ngFor="let n of nodes">
+    <li *ngFor="let n of nodes" style="list-style: none">
         <app-tree-node [node]="n"></app-tree-node>
     </li>
   </ul>

@@ -7,6 +7,8 @@ import { TreeEvents } from 'app/tree/tree-events';
     selector: 'app-tree-node',
     template: `
     <div *ngIf="node" (click)="toggle(node)">
+        <span *ngIf="showExpandButton">+</span>
+        <span *ngIf="showCollapseButton">-</span>
         <span   [class.selected]="node.selected"
                 role="treeitem"
                 attr.aria-expanded="{{node.expanded}}"
@@ -17,6 +19,9 @@ import { TreeEvents } from 'app/tree/tree-events';
                 attr.title="{{node.title}}">
             {{node.title}}
         </span>
+   
+        <app-tree-node-list  [nodes]="allChildren" *ngIf="canShowChildren">
+        </app-tree-node-list>
     </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,9 +50,24 @@ export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     get treeNodes() {
         return Observable.of(this.node.nodes);
     }
+    get expanded() {
+        return this.node.expanded;
+    }
     get hasChildren() {
         console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
         return this.node.nodes.length > 0;
+    }
+    get showExpandButton() {
+        return !this.node.expanded && this.hasChildren;
+    }
+    get showCollapseButton() {
+        return this.node.expanded && !this.hasChildren;
+    }
+    get canShowChildren() {
+        return this.hasChildren && this.expanded;
+    }
+    get allChildren(){
+        return this.node.nodes;
     }
 }
 

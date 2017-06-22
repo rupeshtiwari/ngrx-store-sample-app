@@ -28,7 +28,7 @@ describe('Tree Reducer', () => {
             };
             result = reducer(stateBefore, fromActions.toggleNode(['nodes', 0]));
         });
-        it('can update selected, tabIndex', () => {
+        it('can update selected, tabIndex, expaded', () => {
             const stateAfter = {
                 loading: false,
                 selectedPath: [],
@@ -36,7 +36,7 @@ describe('Tree Reducer', () => {
                     {
                         title: 'core'
                         , nodes: []
-                        , expanded: false
+                        , expanded: true
                         , selected: true
                         , tabIndex: 0
                         , path: ['nodes', 0]

@@ -11,9 +11,11 @@ import { TreeEvents } from 'app/tree/tree-events';
     template: `
     <div class="container">
     <fieldset>
-    <h2>Tree App</h2>
-    <app-tree-node-list [nodes]="nodes$|async">
+    <h2 id="ta">Tree App</h2>
+    <div  role="tree" aria-labelledby="ta">
+    <app-tree-node-list  [nodes]="nodes$|async">
     </app-tree-node-list>
+    </div>
     </fieldset>
     </div>
   `,

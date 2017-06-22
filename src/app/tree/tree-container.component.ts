@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as fromActions from '../actions/tree';
 import { TreeNode } from '../reducers/tree';
 import * as fromRoot from '../reducers';
+import { TreeEvents } from 'app/tree/tree-events';
 
 @Component({
     selector: 'app-tree-container',
@@ -21,9 +22,13 @@ import * as fromRoot from '../reducers';
 
 export class TreeContainerComponent implements OnInit {
     nodes$: Observable<TreeNode[]>;
-    constructor(private store: Store<fromRoot.AppState>) {
+    constructor(private store: Store<fromRoot.AppState>, private treeEvents: TreeEvents) {
         console.log('initialized', 'TreeContainerComponent');
         this.nodes$ = store.select(fromRoot.getAllNodes);
+        treeEvents.toggle$.subscribe(this.onToggle);
+    }
+    onToggle(path): void {
+        this.store.dispatch(fromActions.toggleNode(path));
     }
     ngOnInit() {
         this.store.dispatch(fromActions.loadTree());

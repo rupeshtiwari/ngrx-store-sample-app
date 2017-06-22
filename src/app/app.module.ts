@@ -18,6 +18,7 @@ import { TreeNodeListComponent } from 'app/tree/tree-node-list.component';
 import { TreeContainerComponent } from 'app/tree/tree-container.component';
 
 import { MyErrorHandler } from './error-handler';
+import { TreeEvents } from "app/tree/tree-events";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { MyErrorHandler } from './error-handler';
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
-  providers: [{ provide: ErrorHandler, useClass: MyErrorHandler }],
+  providers: [{ provide: ErrorHandler, useClass: MyErrorHandler }, TreeEvents],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

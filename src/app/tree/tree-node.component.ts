@@ -2,11 +2,12 @@ import { Component, Input, OnInit, ChangeDetectionStrategy, OnChanges, AfterView
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { TreeEvents } from 'app/tree/tree-events';
 @Component({
     selector: 'app-tree-node',
     template: `
     <div *ngIf="node">
-    <span attr.title={{node.title}}>
+    <span attr.role="treeitem" attr.title={{node.title}} >
         {{node.title}}
     </span>
     </div>
@@ -16,7 +17,7 @@ import 'rxjs/add/observable/of';
 
 export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() node;
-    constructor() {
+    constructor(private treeEvents: TreeEvents) {
         console.log('constructor', 'TreeNodeComponent');
     }
     ngOnInit() {
@@ -35,6 +36,5 @@ export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
         console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
         return this.node.nodes.length > 0;
     }
-
 }
 

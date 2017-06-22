@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { Action, combineReducers } from '@ngrx/store';
-import { compose } from '@ngrx/core';
-import { storeLogger } from 'ngrx-store-logger';
+import { append, prop, assoc, lensPath, over, lens, not, compose } from 'ramda';
 
 import * as fromActions from '../actions/tree';
 
@@ -36,6 +35,7 @@ export const initialState = {
             , nodes: []
             , expanded: false
             , selected: false
+            , tabIndex: -1
             , path: ['nodes', 1]
         },
         {
@@ -44,11 +44,13 @@ export const initialState = {
                 {
                     title: 'find-book'
                     , expanded: false
+                    , tabIndex: -1
                     , selected: false
                     , path: ['nodes', 2, 'nodes', 0]
                 }
             ]
             , expanded: false
+            , tabIndex: -1
             , selected: false
             , path: ['nodes', 2]
         }
@@ -60,6 +62,12 @@ export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case fromActions.LOAD:
             return state;
+        case fromActions.TOGGLE_NODE:
+            const toggle = compose(
+                over(lensPath(append('selected', action.payload)), not),
+                over(lensPath(append('tabIndex', action.payload)), (v) => v === -1 ? 0 : -1)
+            );
+            return toggle(state);
         default:
             return state;
     }

@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
 import { Action, combineReducers } from '@ngrx/store';
-import { compose } from '@ngrx/core';
-import { storeLogger } from 'ngrx-store-logger';
-import { append, prop, assoc, lensPath, over, lens, not } from 'ramda';
+import { append, prop, assoc, lensPath, over, lens, not, compose, evolve } from 'ramda';
 import * as fromActions from '../actions/todo';
 
 export type Path = any[];
@@ -30,7 +28,8 @@ export interface Todo {
 export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case fromActions.ADD_TODO:
-            return over(lensPath(['todos']), (todos) => append(action.payload, todos), state);
+            const appendNewTodo = (todos) => append(action.payload, todos);
+            return over(lensPath(['todos']), appendNewTodo, state);
         case fromActions.TOGGLE_TODO:
             return over(lensPath(append('complete', action.payload)), not, state);
         default:

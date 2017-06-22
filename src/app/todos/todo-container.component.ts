@@ -14,20 +14,20 @@ import * as fromRoot from '../reducers';
    
      <app-new-todo-input (create)="addTodo($event)"></app-new-todo-input>
     ========================
-    <app-todo-list 
-                [todos$]="todos$ | async">
+    <app-todo-list (toggleTodo)="toggleTodo($event)" [todos$]="todos$|async">
     </app-todo-list>
-     <pre>{{todos$ | async | json}}</pre>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TodoContainerComponent {
     @Input() todos$: Observable<Todo[]>;
-
     constructor(private store: Store<fromRoot.AppState>) {
         console.log('initialized', 'TodoContainerComponent');
         this.todos$ = store.select(fromRoot.getAllTodos);
+    }
+    toggleTodo(path) {
+        this.store.dispatch(fromActions.toggleTodo(path));
     }
     addTodo(todo) {
         this.store.dispatch(fromActions.addTodo(todo));

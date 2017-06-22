@@ -31,7 +31,7 @@ export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case fromActions.ADD_TODO:
             return over(lensPath(['todos']), (todos) => append(action.payload, todos), state);
-        case fromActions.COMPLETE_TODO:
+        case fromActions.TOGGLE_TODO:
             return over(lensPath(append('complete', action.payload)), not, state);
         default:
             return state;

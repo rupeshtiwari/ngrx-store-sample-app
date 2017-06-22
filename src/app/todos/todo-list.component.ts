@@ -1,13 +1,14 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Path } from 'app/reducers/todo';
 
 @Component({
     selector: 'app-todo-list',
     template: `
   <ul>
     <li *ngFor="let todo of todos$">
-        <app-todo [todo]="todo"></app-todo>
+        <app-todo [todo]="todo" (toggleTodo)="toggleTodo.emit($event)"></app-todo>
     </li>
   </ul>
   `,
@@ -16,8 +17,9 @@ import { Observable } from 'rxjs/Observable';
 
 export class TodoListComponent {
     @Input() todos$;
+    @Output() toggleTodo = new EventEmitter<Path>();
     constructor() {
-        console.log('initialized','TodoListComponent');
+        console.log('initialized', 'TodoListComponent');
     }
 }
 

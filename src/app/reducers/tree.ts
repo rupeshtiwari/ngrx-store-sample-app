@@ -28,6 +28,7 @@ export const initialState = {
             , nodes: []
             , expanded: false
             , selected: false
+            , tabIndex: -1
             , path: ['nodes', 0]
         },
         {

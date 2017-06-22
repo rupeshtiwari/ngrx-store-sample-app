@@ -6,19 +6,32 @@ import { TreeEvents } from 'app/tree/tree-events';
 @Component({
     selector: 'app-tree-node',
     template: `
-    <div *ngIf="node">
-    <span attr.role="treeitem" attr.title={{node.title}} >
-        {{node.title}}
-    </span>
+    <div *ngIf="node" (click)="toggle(node)">
+        <span   [class.selected]="node.selected"
+                role="treeitem"
+                attr.aria-expanded="{{node.expanded}}"
+                attr.aria-hidden="{{!node.expanded}}"
+                attr.aria-selected="{{node.selected}}"
+                attr.aria-label="{{node.title}}"
+                attr.tabindex="{{node.tabIndex}}"
+                attr.title="{{node.title}}">
+            {{node.title}}
+        </span>
     </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
+    , styles: [`
+        .selected {background-color:yellow}
+        `]
 })
 
 export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() node;
     constructor(private treeEvents: TreeEvents) {
         console.log('constructor', 'TreeNodeComponent');
+    }
+    toggle(node) {
+        this.treeEvents.toggle(node.path);
     }
     ngOnInit() {
         console.log(`ngOnInit ${this.node.title}`, this.node);

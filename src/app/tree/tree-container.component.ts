@@ -11,7 +11,7 @@ import { TreeEvents } from 'app/tree/tree-events';
     template: `
     <div class="container">
     <fieldset>
-    <legend>Tree App</legend>
+    <h2>Tree App</h2>
     <app-tree-node-list [nodes]="nodes$|async">
     </app-tree-node-list>
     </fieldset>
@@ -25,7 +25,7 @@ export class TreeContainerComponent implements OnInit {
     constructor(private store: Store<fromRoot.AppState>, private treeEvents: TreeEvents) {
         console.log('initialized', 'TreeContainerComponent');
         this.nodes$ = store.select(fromRoot.getAllNodes);
-        treeEvents.toggle$.subscribe(this.onToggle);
+        treeEvents.toggle$.subscribe(this.onToggle.bind(this));
     }
     onToggle(path): void {
         this.store.dispatch(fromActions.toggleNode(path));

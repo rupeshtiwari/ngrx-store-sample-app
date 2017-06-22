@@ -10,7 +10,7 @@ import * as fromRoot from '../reducers';
     template: `
     <div class="container">
     <fieldset>
-    <legend>Todo App</legend>
+    <h2>Todo App</h2>
      <app-new-todo-input (create)="addTodo($event)">
      </app-new-todo-input>
      <br>

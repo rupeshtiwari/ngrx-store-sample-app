@@ -2,7 +2,20 @@ import { reducer } from 'app/reducers/todo';
 import * as fromActions from '../actions/todo';
 
 describe('todo', () => {
-    it('can add new todo', () => {
+describe('COMPLETE_TODO', () => {
+    it('can complete todo', () => {
+        const stateBefore = {
+            todos: [{ text: 'testing', complete: false, path: ['todos', 0] }]
+        };
+         const stateAfter = {
+           todos: [{ text: 'testing', complete: true, path: ['todos', 0] }]
+        };
+        const result = reducer(stateBefore, fromActions.completeTodo(['todos', 0]));
+        expect(result).toEqual(stateAfter);
+    });
+});
+    describe('ADD_TODO', () => {
+         it('can add new todo', () => {
         const stateBefore = {
             todos: []
         };
@@ -12,7 +25,6 @@ describe('todo', () => {
         };
         expect(result).toEqual(stateAfter);
     });
-    describe('Immutable', () => {
         it('can add new todo if already one present', () => {
             const stateBefore = {
                 todos: [{ text: 'testing' }]

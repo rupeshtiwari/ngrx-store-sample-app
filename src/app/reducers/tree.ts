@@ -14,7 +14,7 @@ export interface TreeNode {
     nodes: TreeNode[];
 }
 
-export interface TreeState {
+export interface State {
     loading: boolean;
     selectedPath?: Path;
     nodes: TreeNode[];
@@ -65,5 +65,5 @@ export const reducerTree = (state = initialState, action: Action) => {
     }
 };
 
-export const getNodes = (state: TreeState) => state.nodes;
+export const getNodes = (state: State) => state.nodes;
 

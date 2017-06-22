@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromActions from '../actions/todo';
 import { Todo } from '../reducers/todo';
-
 import * as fromRoot from '../reducers';
+
 @Component({
     selector: 'app-todo-container',
     template: `

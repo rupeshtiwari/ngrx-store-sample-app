@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, OnChanges, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -10,13 +10,22 @@ import 'rxjs/add/observable/of';
      
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class TreeNodeComponent implements OnInit {
+export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() node;
+    constructor() {
+        console.log('constructor', 'TreeNodeComponent');
+    }
     ngOnInit() {
-        console.log(`initializing ${this.node.title}`, this.node);
+        console.log(`ngOnInit ${this.node.title}`, this.node);
+    }
+    ngAfterViewInit() {
+        console.log('ngAfterViewInit', `${this.node.title}`);
+    }
+    ngOnChanges() {
+        console.log('ngOnChanges', `${this.node.title}`);
     }
     get treeNodes() {
         return Observable.of(this.node.nodes);
@@ -25,5 +34,6 @@ export class TreeNodeComponent implements OnInit {
         console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
         return this.node.nodes.length > 0;
     }
+
 }
 

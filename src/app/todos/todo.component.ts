@@ -22,13 +22,13 @@ export class TodoComponent implements OnChanges, AfterViewInit  {
     @Input() todo;
     @Output() toggleTodo = new EventEmitter<Path>();
     constructor() {
-        console.log('initialized', 'TodoComponent');
+        console.log('constructor', 'TodoComponent');
     }
     ngAfterViewInit () {
-        console.log('initialized', `${this.todo.text}`);
+        console.log('ngAfterViewInit', `${this.todo.text}`);
     }
     ngOnChanges() {
-        console.log('changed', `${this.todo.text}`);
+        console.log('ngOnChanges', `${this.todo.text}`);
     }
 }
 

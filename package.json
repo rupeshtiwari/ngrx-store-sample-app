@@ -9,9 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    
     "build-prod": "ng build --prod",
-    "git-push": "git push", 
+    "git-push": "git push",
     "publish": "npm run gh-pages",
     "gh-pages": "gh-pages -d dist -b gh-pages",
     "deploy": "npm run build-prod & npm run git-push & npm run publish"
@@ -30,6 +29,7 @@
     "@ngrx/effects": "^2.0.3",
     "@ngrx/store": "^2.2.2",
     "@ngrx/store-devtools": "^3.2.4",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ngrx-store-logger": "^0.1.8",
     "ramda": "^0.24.1",

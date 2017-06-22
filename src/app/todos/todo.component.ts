@@ -7,12 +7,15 @@ import { Path } from 'app/reducers/todo';
     selector: 'app-todo',
     template: `
     <li>
+    <span [ngClass]="todo.complete?'complete':'pending'">
     {{todo.text}} - 
     {{todo.complete?'complete':'pending'}}
-             <button (click)="toggleTodo.emit(todo.path)">Toggle</button>
+    </span>
+             <button class="btn btn-success" (click)="toggleTodo.emit(todo.path)">Toggle</button>
              </li>
   `,
-   changeDetection: ChangeDetectionStrategy.OnPush
+   changeDetection: ChangeDetectionStrategy.OnPush,
+   styles: [`.complete{ text-decoration: line-through;color:gray} .pending{text-decoration:'';color:''}`]
 })
 
 export class TodoComponent implements OnChanges, AfterViewInit  {

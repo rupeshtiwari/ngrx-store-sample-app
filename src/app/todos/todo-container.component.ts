@@ -5,17 +5,19 @@ import * as fromActions from '../actions/todo';
 import { Todo } from '../reducers/todo';
 
 import * as fromRoot from '../reducers';
-
-
 @Component({
     selector: 'app-todo-container',
     template: `
-    <h2>Todos</h2>
-   
-     <app-new-todo-input (create)="addTodo($event)"></app-new-todo-input>
-    ========================
+    <div class="container">
+    <fieldset>
+    <legend>Todo App</legend>
+     <app-new-todo-input (create)="addTodo($event)">
+     </app-new-todo-input>
+     <br>
     <app-todo-list (toggleTodo)="toggleTodo($event)" [todos$]="todos$|async">
     </app-todo-list>
+    </fieldset>
+    </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

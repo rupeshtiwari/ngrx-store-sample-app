@@ -14,7 +14,7 @@ import * as fromRoot from '../reducers';
      <app-new-todo-input (create)="addTodo($event)">
      </app-new-todo-input>
      <br>
-    <app-todo-list (toggleTodo)="toggleTodo($event)" [todos$]="todos$|async">
+    <app-todo-list (toggleTodo)="toggleTodo($event)" [todos]="todos$|async">
     </app-todo-list>
     </fieldset>
     </div>

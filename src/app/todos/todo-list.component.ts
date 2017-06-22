@@ -7,7 +7,7 @@ import { Path } from 'app/reducers/todo';
     selector: 'app-todo-list',
     template: `
   <ul>
-    <li *ngFor="let todo of todos$">
+    <li *ngFor="let todo of todos">
         <app-todo [todo]="todo" (toggleTodo)="toggleTodo.emit($event)"></app-todo>
     </li>
   </ul>
@@ -16,7 +16,7 @@ import { Path } from 'app/reducers/todo';
 })
 
 export class TodoListComponent {
-    @Input() todos$;
+    @Input() todos;
     @Output() toggleTodo = new EventEmitter<Path>();
     constructor() {
         console.log('initialized', 'TodoListComponent');

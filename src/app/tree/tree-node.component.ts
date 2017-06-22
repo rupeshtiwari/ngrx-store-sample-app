@@ -6,8 +6,9 @@ import 'rxjs/add/observable/of';
     selector: 'app-tree-node',
     template: `
     <div *ngIf="node">
-    {{node.title}}
-     
+    <span attr.title={{node.title}}>
+        {{node.title}}
+    </span>
     </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush

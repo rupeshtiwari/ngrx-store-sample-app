@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
     selector: 'app-tree-node-list',
     template: `
   <ul>
-    <li *ngFor="let n of nodes$ | async">
+    <li *ngFor="let n of nodes">
         <app-tree-node [node]="n"></app-tree-node>
     </li>
   </ul>
@@ -15,9 +15,9 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class TreeNodeListComponent {
-    @Input() nodes$;
+    @Input() nodes;
     constructor() {
-        console.log('initialized', 'TreeNodeListComponent');
+        console.log('constructor', 'TreeNodeListComponent');
     }
 }
 

@@ -20,7 +20,7 @@ import { TreeEvents } from 'app/tree/tree-events';
             {{node.title}}
         </span>
    
-        <app-tree-node-list  [nodes]="allChildren" *ngIf="canShowChildren">
+        <app-tree-node-list role="group" [nodes]="allChildren" *ngIf="canShowChildren">
         </app-tree-node-list>
     </div>
   `,

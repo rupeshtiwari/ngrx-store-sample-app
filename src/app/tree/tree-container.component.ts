@@ -12,8 +12,8 @@ import { TreeEvents } from 'app/tree/tree-events';
     <div class="container">
     <fieldset>
     <h2 id="ta">Tree App</h2>
-    <div  role="tree" aria-labelledby="ta">
-    <app-tree-node-list  [nodes]="nodes$|async">
+    <div >
+    <app-tree-node-list  [nodes]="nodes$|async"  role="tree" aria-labelledby="ta">
     </app-tree-node-list>
     </div>
     </fieldset>

@@ -8,7 +8,7 @@ import * as fromRoot from '../reducers';
 @Component({
     selector: 'app-todo-container',
     template: `
-    <div class="container">
+    <div class="container" id="tree">
     <fieldset>
     <h2>Todo App</h2>
      <app-new-todo-input (create)="addTodo($event)">
@@ -20,6 +20,7 @@ import * as fromRoot from '../reducers';
     </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
+    , styles: [`#tree{cursor:pointer}`]
 })
 
 export class TodoContainerComponent {

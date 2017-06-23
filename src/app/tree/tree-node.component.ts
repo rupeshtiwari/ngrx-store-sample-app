@@ -61,7 +61,7 @@ export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
         return !this.node.expanded && this.hasChildren;
     }
     get showCollapseButton() {
-        return this.node.expanded && !this.hasChildren;
+        return this.node.expanded && this.hasChildren;
     }
     get canShowChildren() {
         return this.hasChildren && this.expanded;

@@ -25,7 +25,16 @@ export const initialState = {
     nodes: [
         {
             title: 'core'
+            , nodes: [
+                {
+            title: 'service'
             , nodes: []
+            , expanded: false
+            , selected: false
+            , tabIndex: -1
+            , path: ['nodes', 0, 'nodes', 0]
+        }
+            ]
             , expanded: false
             , selected: false
             , tabIndex: -1
@@ -33,7 +42,16 @@ export const initialState = {
         },
         {
             title: 'shared'
+            , nodes: [
+                {
+            title: 'pipes'
             , nodes: []
+            , expanded: false
+            , selected: false
+            , tabIndex: -1
+            , path: ['nodes', 1, 'nodes', 0 ]
+        }
+            ]
             , expanded: false
             , selected: false
             , tabIndex: -1
@@ -43,11 +61,19 @@ export const initialState = {
             title: 'features'
             , nodes: [
                 {
-                    title: 'find-book'
+                    title: 'todo app'
                     , expanded: false
                     , tabIndex: -1
                     , selected: false
                     , path: ['nodes', 2, 'nodes', 0]
+                    , nodes: []
+                },
+                 {
+                    title: 'tree app'
+                    , expanded: false
+                    , tabIndex: -1
+                    , selected: false
+                    , path: ['nodes', 2, 'nodes', 1]
                     , nodes: []
                 }
             ]

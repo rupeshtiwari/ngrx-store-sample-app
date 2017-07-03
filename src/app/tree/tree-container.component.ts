@@ -2,8 +2,9 @@ import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromActions from '../actions/tree';
-import { TreeNode } from '../reducers/tree';
 import * as fromRoot from '../reducers';
+import { TreeNode } from '../reducers/tree';
+
 import { TreeEvents } from 'app/tree/tree-events';
 
 @Component({
@@ -24,7 +25,10 @@ import { TreeEvents } from 'app/tree/tree-events';
 
 export class TreeContainerComponent implements OnInit {
     nodes$: Observable<TreeNode[]>;
-    constructor(private store: Store<fromRoot.AppState>, private treeEvents: TreeEvents) {
+    constructor(
+        private store: Store<fromRoot.AppState>, 
+        private treeEvents: TreeEvents
+        ) {
         console.log('initialized', 'TreeContainerComponent');
         this.nodes$ = store.select(fromRoot.getAllNodes);
         treeEvents.toggle$.subscribe(this.onToggle.bind(this));

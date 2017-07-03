@@ -1,9 +1,11 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { StoreModule , INITIAL_STATE} from '@ngrx/store';
+import { StoreModule, INITIAL_STATE } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { reducer } from './reducers';
@@ -19,7 +21,8 @@ import { TreeContainerComponent } from 'app/tree/tree-container.component';
 
 import { MyErrorHandler } from './error-handler';
 import { TreeEvents } from "app/tree/tree-events";
-
+import { getAppState } from './services/local-storage';
+import { SaveEffects } from './effects/save';
 
 export const stateToRestore = {
   todos: {
@@ -105,10 +108,7 @@ export const stateToRestore = {
 
   }
 }
-
-
-
-
+export const getStateToRestore = () => stateToRestore;
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,13 +126,14 @@ export const stateToRestore = {
     HttpModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(SaveEffects),
   ],
   providers: [{ provide: ErrorHandler, useClass: MyErrorHandler }
-  , TreeEvents
-  , {
-      provide: INITIAL_STATE,
-      useValue: stateToRestore
-    }
+    , TreeEvents
+    , {
+    provide: INITIAL_STATE,
+    useValue: getAppState()
+  }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

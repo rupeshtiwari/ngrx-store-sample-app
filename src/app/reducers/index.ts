@@ -7,22 +7,21 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import * as fromTree from '../reducers/tree';
 import * as fromTodos from '../reducers/todo';
+import { AppState } from "app/reducers/app-state";
 
 const reducers = {
     todos: fromTodos.reducer,
     tree: fromTree.reducer
 };
 
-export interface AppState {
-    todos: fromTodos.State;
-    tree: fromTree.State;
-}
+export * from "app/reducers/app-state";
 
 export const developmentReducer = compose(storeFreeze, storeLogger(), combineReducers)(reducers);
 
 export function reducer(state, action) {
     return developmentReducer(state, action);
 }
+export const getAppState = (state:AppState) => state;
 
 export const getTodosState = (state: AppState) => state.todos;
 export const getAllTodos = createSelector(getTodosState, fromTodos.getTodos);

@@ -5,7 +5,7 @@ import { TreeNode } from "app/models/tree-node.model";
 
 @Injectable()
 export class TreeDataService {
-  constructor() { }
+  
   private nodes = [
     {
       title: 'core'
@@ -83,6 +83,7 @@ export class TreeDataService {
     }
 
   ]
+  constructor() { }
   parentNodes() {
   //  R.project([],this.nodes)
   }

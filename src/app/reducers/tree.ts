@@ -3,8 +3,8 @@ import { Action, combineReducers } from '@ngrx/store';
 import * as R from 'ramda';
 
 import * as fromActions from '../actions/tree';
-import { TreeNode } from "app/models/tree-node.model";
-import { Path } from "app/reducers/todo";
+import { TreeNode } from 'app/models/tree-node.model';
+import { Path } from 'app/reducers/todo';
 const { log } = console;
 
 export interface State {
@@ -31,12 +31,30 @@ export const initialState = {
                         , path: ['nodes', 0, 'nodes', 0, 'nodes', 0]
                     },
                     {
+                        title: 'Search'
+                        , nodes: [
+                            {
+                                title: 'Index.ts'
+                                , nodes: []
+                                , expanded: false
+                                , selected: false
+                                , tabIndex: -1
+                                , path: ['nodes', 0, 'nodes', 0, 'nodes', 1, 'nodes', 0]
+                            }
+
+                        ]
+                        , expanded: false
+                        , selected: false
+                        , tabIndex: -1
+                        , path: ['nodes', 0, 'nodes', 0, 'nodes', 1]
+                    },
+                    {
                         title: 'Todo-Service'
                         , nodes: []
                         , expanded: false
                         , selected: false
                         , tabIndex: -1
-                        , path: ['nodes', 0, 'nodes', 0, 'nodes', 1]
+                        , path: ['nodes', 0, 'nodes', 0, 'nodes', 2]
                     }]
                     , expanded: false
                     , selected: false
@@ -100,7 +118,6 @@ export const reducer = (state = initialState, action: Action) => {
         case fromActions.LOAD:
             return state;
         case fromActions.TOGGLE_NODE:
-
             const currentSelectedPath = action.payload;
             const currentSelectedLens = R.lensPath(currentSelectedPath);
             const previousSelectedPath = R.prop('selectedPath', state);
@@ -134,10 +151,14 @@ export const reducer = (state = initialState, action: Action) => {
                 )
             );
             return toggle(state);
+
+
         default:
             return state;
     }
 };
 
-export const getNodes = (state: State) => state.nodes;
+export * from './tree-selectors';
+
+
 

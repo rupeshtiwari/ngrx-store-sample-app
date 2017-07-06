@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as R from 'ramda';
 
-import { TreeNode, Path } from 'app/models/tree-node.model';
+import { TreeNode, Path, getChildrens, getNodesWithoutChildrens } from 'app/models/tree-node.model';
 import { log } from 'app/services/logger.service';
-import { getNodesWithoutChild, getSelectedNodes } from 'app/reducers/tree-selectors';
-
 
 @Injectable()
 export class TreeDataService {
@@ -91,10 +89,10 @@ export class TreeDataService {
     constructor() { }
 
     get parentNodes() {
-        return getNodesWithoutChild(this.nodeList.nodes);
+        return getNodesWithoutChildrens(this.nodeList.nodes);
     }
 
-    getNodes(path: Path): TreeNode[] {
-        return R.compose(getNodesWithoutChild, getSelectedNodes(path))(this.nodeList);
+    getNodesWithoutChildrens(path: Path): TreeNode[] {
+        return R.compose(getNodesWithoutChildrens, getChildrens(path))(this.nodeList);
     }
 }

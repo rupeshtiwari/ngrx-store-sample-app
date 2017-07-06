@@ -20,7 +20,7 @@ export const saveAppState = (state) => save(getKey(), state);
 @Injectable()
 export class LocalStorageService {
   getAppState() {
-    return Observable.of(getState(getKey()));
+    return of(getState(getKey()));
   }
   saveAppState(state) {
     return save(getKey(), state);

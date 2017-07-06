@@ -24,7 +24,7 @@ describe('tree data service', () => {
                 , path: ['nodes', 0, 'nodes', 0]
             }
         ];
-        expect(JSON.stringify(dataService.getNodes(path))).toEqual(JSON.stringify(expectedNodes));
+        expect(JSON.stringify(dataService.getNodesWithoutChildrens(path))).toEqual(JSON.stringify(expectedNodes));
     });
 });
 

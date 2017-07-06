@@ -13,9 +13,9 @@ export const loadTree = () => ({
     type: LOAD, payload: ''
 });
 
-export const selectExpand = (path) => ({
+export const selectExpand = (path, hasChildNode) => ({
     type: SELECT_EXPAND,
-    payload: path
+    payload: { path, hasChildNode }
 });
 
 export const selectCollapse = (path) => ({

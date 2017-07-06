@@ -3,7 +3,10 @@ import { Action, combineReducers } from '@ngrx/store';
 import * as R from 'ramda';
 
 import * as fromActions from '../actions/tree';
-import { TreeNode } from 'app/models/tree-node.model';
+import { TreeNode, hasChildrens, unselectNode, selectNode,
+     unfocusNode, focusNode, expandNode, replacePreviousSelectedPathWith,
+     replacePreviousFocusedPathWith, 
+      addChildrens} from 'app/models/tree-node.model';
 import { Path } from 'app/reducers/todo';
 const { log } = console;
 
@@ -115,8 +118,42 @@ export const initialState = {
 
 export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
+        case fromActions.SELECT_EXPAND: {
+            if (!action.payload.hasChildNodes) { return state; }
+            const currentPath = action.payload;
+            const previousPath = state.selectedPath;
+
+            return R.compose(
+                replacePreviousFocusedPathWith(currentPath),
+                replacePreviousSelectedPathWith(currentPath),
+                expandNode(currentPath),
+                focusNode(currentPath),
+                unfocusNode(previousPath),
+                selectNode(currentPath),
+                unselectNode(previousPath)
+            )(state);
+        }
+        case fromActions.SELECT_EXPAND_ADD_CHILDREN: {
+            const currentPath = action.payload;
+            const previousPath = state.selectedPath;
+
+            return R.compose(
+                addChildrens(currentPath,action.payload.nodes),
+                replacePreviousFocusedPathWith(currentPath),
+                replacePreviousSelectedPathWith(currentPath),
+                expandNode(currentPath),
+                focusNode(currentPath),
+                unfocusNode(previousPath),
+                selectNode(currentPath),
+                unselectNode(previousPath)
+            )(state);
+        }
+
+
+
         case fromActions.LOAD:
             return state;
+
         case fromActions.TOGGLE_NODE:
             const currentSelectedPath = action.payload;
             const currentSelectedLens = R.lensPath(currentSelectedPath);
@@ -128,19 +165,13 @@ export const reducer = (state = initialState, action: Action) => {
                 tabIndex: () => 0
             });
 
-            const hasChildNodes = R.compose(
-                R.lt(0),
-                R.length,
-                R.view(R.lensPath(R.append('nodes', currentSelectedPath)))
-            );
-
             const toggleSelection = (path) => R.compose(
                 R.over(R.lensPath(R.append('selected', path)), R.not),
                 R.over(R.lensPath(R.append('tabIndex', path)), (v) => v === -1 ? 0 : -1)
             );
             const toggleExpandCurrentSelectedNode = R.over(currentSelectedLens, toggleExpand);
             const replaceOldSelectedPath = R.assoc('selectedPath', currentSelectedPath);
-            const toggleExpandNode = R.ifElse(hasChildNodes, toggleExpandCurrentSelectedNode,
+            const toggleExpandNode = R.ifElse(hasChildrens(currentSelectedPath), toggleExpandCurrentSelectedNode,
                 toggleSelection(currentSelectedPath));
             const hasPreviousSelectedNode = R.compose(R.tap(log), R.not, R.isEmpty, R.prop('selectedPath'));
             const toggle = R.compose(

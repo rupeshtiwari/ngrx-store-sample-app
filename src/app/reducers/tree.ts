@@ -3,16 +3,9 @@ import { Action, combineReducers } from '@ngrx/store';
 import * as R from 'ramda';
 
 import * as fromActions from '../actions/tree';
+import { TreeNode } from "app/models/tree-node.model";
+import { Path } from "app/reducers/todo";
 const { log } = console;
-
-export type Path = any[];
-
-export interface TreeNode {
-    title: string;
-    expanded: boolean;
-    selected: boolean;
-    nodes: TreeNode[];
-}
 
 export interface State {
     loading: boolean;
@@ -29,7 +22,22 @@ export const initialState = {
             , nodes: [
                 {
                     title: 'service'
-                    , nodes: []
+                    , nodes: [{
+                        title: 'Tree-Service'
+                        , nodes: []
+                        , expanded: false
+                        , selected: false
+                        , tabIndex: -1
+                        , path: ['nodes', 0, 'nodes', 0, 'nodes', 0]
+                    },
+                    {
+                        title: 'Todo-Service'
+                        , nodes: []
+                        , expanded: false
+                        , selected: false
+                        , tabIndex: -1
+                        , path: ['nodes', 0, 'nodes', 0, 'nodes', 1]
+                    }]
                     , expanded: false
                     , selected: false
                     , tabIndex: -1
@@ -96,7 +104,7 @@ export const reducer = (state = initialState, action: Action) => {
             const currentSelectedPath = action.payload;
             const currentSelectedLens = R.lensPath(currentSelectedPath);
             const previousSelectedPath = R.prop('selectedPath', state);
-                            
+
             const toggleExpand = R.evolve({
                 expanded: R.not,
                 selected: () => true,

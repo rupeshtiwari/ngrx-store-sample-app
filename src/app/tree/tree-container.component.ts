@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromActions from '../actions/tree';
 import * as fromRoot from '../reducers';
-import { TreeNode } from '../reducers/tree';
+import { TreeNode } from '../models/tree-node.model';
 
 import { TreeEvents } from 'app/tree/tree-events';
 

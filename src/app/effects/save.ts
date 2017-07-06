@@ -15,6 +15,7 @@ import { save } from '../services';
 import * as fromSave from '../actions/save';
 import { saveAppState } from '../services/local-storage';
 
+import  * as R from 'ramda';
 
 @Injectable()
 export class SaveEffects {

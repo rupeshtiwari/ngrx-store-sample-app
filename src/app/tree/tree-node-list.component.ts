@@ -17,7 +17,7 @@ import { Observable } from 'rxjs/Observable';
 export class TreeNodeListComponent {
     @Input() nodes;
     constructor() {
-        console.log('constructor', 'TreeNodeListComponent');
+      //  console.log('constructor', 'TreeNodeListComponent');
     }
 }
 

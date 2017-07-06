@@ -26,7 +26,7 @@ import * as fromRoot from '../reducers';
 export class TodoContainerComponent {
     @Input() todos$: Observable<Todo[]>;
     constructor(private store: Store<fromRoot.AppState>) {
-        console.log('initialized', 'TodoContainerComponent');
+       // console.log('initialized', 'TodoContainerComponent');
         this.todos$ = store.select(fromRoot.getAllTodos);
     }
     toggleTodo(path) {

@@ -33,19 +33,19 @@ import { TreeEvents } from 'app/tree/tree-events';
 export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() node;
     constructor(private treeEvents: TreeEvents) {
-        console.log('constructor', 'TreeNodeComponent');
+      //  console.log('constructor', 'TreeNodeComponent');
     }
     toggle(node) {
         this.treeEvents.toggle(node.path);
     }
     ngOnInit() {
-        console.log(`ngOnInit ${this.node.title}`, this.node);
+      //  console.log(`ngOnInit ${this.node.title}`, this.node);
     }
     ngAfterViewInit() {
-        console.log('ngAfterViewInit', `${this.node.title}`);
+      //  console.log('ngAfterViewInit', `${this.node.title}`);
     }
     ngOnChanges() {
-        console.log('ngOnChanges', `${this.node.title}`);
+      //  console.log('ngOnChanges', `${this.node.title}`);
     }
     get treeNodes() {
         return Observable.of(this.node.nodes);
@@ -54,7 +54,7 @@ export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
         return this.node.expanded;
     }
     get hasChildren() {
-        console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
+      //  console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
         return this.node.nodes.length > 0;
     }
     get showExpandButton() {

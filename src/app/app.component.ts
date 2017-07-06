@@ -18,7 +18,7 @@ export class AppComponent {
     private store: Store<AppState>
   ) {
     store.select(fromRoot.getAppState).subscribe((s) => {
-      console.log('appstate', s);
+    //  console.log('appstate', s);
       this.appState = s;
     });
   }

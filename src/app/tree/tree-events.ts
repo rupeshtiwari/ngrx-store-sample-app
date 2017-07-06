@@ -13,7 +13,6 @@ export class TreeEvents {
 
 // export class TodoComponent {
 //   constructor(private todosService: TodosService) {}
-  
 //   toggle(todo) {
 //     this.todosService.toggle(todo);
 //   }

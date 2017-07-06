@@ -29,7 +29,7 @@ export class TreeContainerComponent implements OnInit {
         private store: Store<fromRoot.AppState>, 
         private treeEvents: TreeEvents
         ) {
-        console.log('initialized', 'TreeContainerComponent');
+        // console.log('initialized', 'TreeContainerComponent');
         this.nodes$ = store.select(fromRoot.getAllNodes);
         treeEvents.toggle$.subscribe(this.onToggle.bind(this));
     }

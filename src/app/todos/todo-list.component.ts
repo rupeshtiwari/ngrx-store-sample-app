@@ -19,7 +19,7 @@ export class TodoListComponent {
     @Input() todos;
     @Output() toggleTodo = new EventEmitter<Path>();
     constructor() {
-        console.log('initialized', 'TodoListComponent');
+       // console.log('initialized', 'TodoListComponent');
     }
 }
 

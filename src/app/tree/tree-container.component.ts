@@ -14,7 +14,7 @@ import { TreeEvents } from 'app/tree/tree-events';
     <fieldset>
     <h2 id="ta">Tree App</h2>
     <div >
-    <app-tree-node-list  [nodes]="nodes$|async"  role="tree" aria-labelledby="ta">
+    <app-tree-node-list  [nodes]="allNodes$|async"  role="tree" aria-labelledby="ta">
     </app-tree-node-list>
     </div>
     </fieldset>
@@ -24,18 +24,24 @@ import { TreeEvents } from 'app/tree/tree-events';
 })
 
 export class TreeContainerComponent implements OnInit {
-    nodes$: Observable<TreeNode[]>;
+    allNodes$: Observable<TreeNode[]>;
     constructor(
-        private store: Store<fromRoot.AppState>, 
+        private store: Store<fromRoot.AppState>,
         private treeEvents: TreeEvents
-        ) {
-        // console.log('initialized', 'TreeContainerComponent');
-        this.nodes$ = store.select(fromRoot.getAllNodes);
-        treeEvents.toggle$.subscribe(this.onToggle.bind(this));
+    ) {
+        this.allNodes$ = store.select(fromRoot.getAllNodes);
+        treeEvents.selectExpand$.subscribe(this.onSelectExpand.bind(this));
+        treeEvents.selectCollapse$.subscribe(this.onSelectCollapse.bind(this));
     }
-    onToggle(path): void {
-        this.store.dispatch(fromActions.toggleNode(path));
+
+    onSelectExpand({ path, hasChildrens }): void {
+        this.store.dispatch(fromActions.selectExpand(path, hasChildrens));
     }
+
+    onSelectCollapse({ path }): void {
+        this.store.dispatch(fromActions.selectCollapse(path));
+    }
+    
     ngOnInit() {
         this.store.dispatch(fromActions.loadTree());
     }

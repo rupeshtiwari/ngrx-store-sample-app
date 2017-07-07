@@ -23,6 +23,8 @@ import { MyErrorHandler } from './error-handler';
 import { TreeEvents } from 'app/tree/tree-events';
 import { getAppState, LocalStorageService } from './services/local-storage';
 import { SaveEffects } from './effects/save';
+import { TreeEffects } from 'app/effects/tree';
+import { TreeDataService } from 'app/services/tree-data.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SaveEffects } from './effects/save';
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(SaveEffects),
+    EffectsModule.run(TreeEffects),
   ],
   providers: [{
     provide: ErrorHandler, useClass: MyErrorHandler
@@ -49,12 +52,7 @@ import { SaveEffects } from './effects/save';
     , TreeEvents
     ,
     LocalStorageService,
-    /*
-  {
-    provide: INITIAL_STATE,
-    useValue: getAppState()
-  }
-  */
+    TreeDataService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

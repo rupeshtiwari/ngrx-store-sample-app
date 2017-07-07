@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { TreeEvents } from 'app/tree/tree-events';
+import { SourceType } from "app/models/tree-node.model";
 @Component({
     selector: 'app-tree-node',
     template: `
@@ -33,19 +34,21 @@ import { TreeEvents } from 'app/tree/tree-events';
 export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() node;
     constructor(private treeEvents: TreeEvents) {
-      //  console.log('constructor', 'TreeNodeComponent');
     }
     toggle(node) {
-        this.treeEvents.toggle(node.path);
+        const path = this.node.path;
+        const hasChildrens = this.hasChildrens;
+        if (this.expanded) {
+            this.treeEvents.selectCollapse({ path });
+        } else {
+            this.treeEvents.selectExpand({ path, hasChildrens });
+        }
     }
     ngOnInit() {
-      //  console.log(`ngOnInit ${this.node.title}`, this.node);
     }
     ngAfterViewInit() {
-      //  console.log('ngAfterViewInit', `${this.node.title}`);
     }
     ngOnChanges() {
-      //  console.log('ngOnChanges', `${this.node.title}`);
     }
     get treeNodes() {
         return Observable.of(this.node.nodes);
@@ -53,20 +56,19 @@ export class TreeNodeComponent implements OnInit, OnChanges, AfterViewInit {
     get expanded() {
         return this.node.expanded;
     }
-    get hasChildren() {
-      //  console.log(`${this.node.title} hasChildren: `, this.node.nodes.length > 0);
+    get hasChildrens() {
         return this.node.nodes.length > 0;
     }
     get showExpandButton() {
-        return !this.node.expanded && this.hasChildren;
+        return !this.node.expanded && this.node.type === SourceType.FOLDER;
     }
     get showCollapseButton() {
-        return this.node.expanded && this.hasChildren;
+        return this.node.expanded && this.node.type === SourceType.FOLDER;
     }
     get canShowChildren() {
-        return this.hasChildren && this.expanded;
+        return this.hasChildrens && this.expanded;
     }
-    get allChildren(){
+    get allChildren() {
         return this.node.nodes;
     }
 }

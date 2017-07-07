@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as R from 'ramda';
 
-import { TreeNode, Path, getChildrens, getNodesWithoutChildrens } from 'app/models/tree-node.model';
+import { TreeNode, Path, getChildrens, getNodesWithoutChildrens, SourceType } from 'app/models/tree-node.model';
 import { log } from 'app/services/logger.service';
 
 @Injectable()
@@ -20,6 +20,27 @@ export class TreeDataService {
                             , selected: false
                             , tabIndex: -1
                             , path: ['nodes', 0, 'nodes', 0, 'nodes', 0]
+                            , type: SourceType.DOCUMENT
+                        },
+                        {
+                            title: 'Search'
+                            , nodes: [
+                                {
+                                    title: 'Index.ts'
+                                    , nodes: []
+                                    , expanded: false
+                                    , selected: false
+                                    , tabIndex: -1
+                                    , path: ['nodes', 0, 'nodes', 0, 'nodes', 1, 'nodes', 0]
+                                    , type: SourceType.DOCUMENT
+                                }
+
+                            ]
+                            , expanded: false
+                            , selected: false
+                            , tabIndex: -1
+                            , path: ['nodes', 0, 'nodes', 0, 'nodes', 1]
+                            , type: SourceType.FOLDER
                         },
                         {
                             title: 'Todo-Service'
@@ -27,18 +48,21 @@ export class TreeDataService {
                             , expanded: false
                             , selected: false
                             , tabIndex: -1
-                            , path: ['nodes', 0, 'nodes', 0, 'nodes', 1]
+                            , path: ['nodes', 0, 'nodes', 0, 'nodes', 2]
+                            , type: SourceType.DOCUMENT
                         }]
                         , expanded: false
                         , selected: false
                         , tabIndex: -1
                         , path: ['nodes', 0, 'nodes', 0]
+                        , type: SourceType.FOLDER
                     }
                 ]
                 , expanded: false
                 , selected: false
                 , tabIndex: -1
                 , path: ['nodes', 0]
+                , type: SourceType.FOLDER
             },
             {
                 title: 'shared'
@@ -50,12 +74,14 @@ export class TreeDataService {
                         , selected: false
                         , tabIndex: -1
                         , path: ['nodes', 1, 'nodes', 0]
+                        , type: SourceType.DOCUMENT
                     }
                 ]
                 , expanded: false
                 , selected: false
                 , tabIndex: -1
                 , path: ['nodes', 1]
+                , type: SourceType.FOLDER
             },
             {
                 title: 'features'
@@ -67,6 +93,7 @@ export class TreeDataService {
                         , selected: false
                         , path: ['nodes', 2, 'nodes', 0]
                         , nodes: []
+                        , type: SourceType.DOCUMENT
                     },
                     {
                         title: 'tree app'
@@ -75,12 +102,14 @@ export class TreeDataService {
                         , selected: false
                         , path: ['nodes', 2, 'nodes', 1]
                         , nodes: []
+                        , type: SourceType.DOCUMENT
                     }
                 ]
                 , expanded: false
-                , selected: false
                 , tabIndex: -1
+                , selected: false
                 , path: ['nodes', 2]
+                , type: SourceType.FOLDER
             }
 
         ]
@@ -94,5 +123,9 @@ export class TreeDataService {
 
     getNodesWithoutChildrens(path: Path): TreeNode[] {
         return R.compose(getNodesWithoutChildrens, getChildrens(path))(this.nodeList);
+    }
+    getNodesWithoutChildrens1(path: Path): any {
+        const nodelist = R.compose(getNodesWithoutChildrens, getChildrens(path))(this.nodeList);
+        return { path, nodelist };
     }
 }

@@ -1,5 +1,8 @@
 import * as R from 'ramda';
-
+export enum SourceType {
+    FOLDER = 1,
+    DOCUMENT = 2
+}
 export type Path = any[];
 export class TreeNode {
     public title: string;

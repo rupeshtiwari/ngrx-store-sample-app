@@ -20,16 +20,3 @@ export class TreeEvents {
     this._selectCollapse.next({ path });
   }
 }
-
-// export class TodoComponent {
-//   constructor(private todosService: TodosService) {}
-//   toggle(todo) {
-//     this.todosService.toggle(todo);
-//   }
-// }
-
-// export class TodosPageComponent {
-//   constructor(private todosService: TodosService) {
-//     todosService.toggle$.subscribe(..);
-//   }
-// }

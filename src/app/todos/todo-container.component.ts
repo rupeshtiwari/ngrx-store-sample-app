@@ -1,23 +1,21 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import * as fromActions from '../actions/todo';
-import { Todo } from '../reducers/todo';
-import * as fromRoot from '../reducers';
+import * as todoActions from 'app/core/store/actions/todo.actions';
+import { Todo } from 'app/core/models/todo';
+import * as fromRoot from 'app/core/store';
 
 @Component({
     selector: 'app-todo-container',
     template: `
-    <div class="container" id="tree">
     <fieldset>
-    <h2>Todo App</h2>
-     <app-new-todo-input (create)="addTodo($event)">
-     </app-new-todo-input>
-     <br>
-    <app-todo-list (toggleTodo)="toggleTodo($event)" [todos]="todos$|async">
-    </app-todo-list>
+        <legend>Todos</legend>
+            <app-new-todo-input (create)="addTodo($event)">
+            </app-new-todo-input>
+            <br>
+        <app-todo-list (toggleTodo)="toggleTodo($event)" [todos]="todos$|async">
+        </app-todo-list>
     </fieldset>
-    </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
     , styles: [`#tree{cursor:pointer}`]
@@ -25,15 +23,17 @@ import * as fromRoot from '../reducers';
 
 export class TodoContainerComponent {
     @Input() todos$: Observable<Todo[]>;
-    constructor(private store: Store<fromRoot.AppState>) {
-       // console.log('initialized', 'TodoContainerComponent');
+    constructor(private store: Store<fromRoot.State>) {
         this.todos$ = store.select(fromRoot.getAllTodos);
     }
-    toggleTodo(path) {
-        this.store.dispatch(fromActions.toggleTodo(path));
+    toggleTodo(id: string) {
+        this.store.dispatch(todoActions.toggleTodo(id));
     }
-    addTodo(todo) {
-        this.store.dispatch(fromActions.addTodo(todo));
+    addTodo({ text }) {
+        this.store.dispatch(todoActions.addTodo(new Todo().fromValues({ complete: false, id: this.randId, text: text } as Todo)));
+    }
+    get randId() {
+        return Math.random().toString(36).substr(2, 10);
     }
 }
 

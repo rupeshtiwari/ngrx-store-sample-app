@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { TreeEvents } from 'app/tree/tree-events';
-import { SourceType } from "app/models/tree-node.model";
+import { SourceType } from 'app/core/models/tree';
 @Component({
     selector: 'app-tree-node',
     template: `

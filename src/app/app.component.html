@@ -1,14 +1,11 @@
 <div class="container">
-  <div>
-    <h2>save application state</h2>
-    <button class="btn btn-warning" (click)="save()">Save</button>
-    <button class="btn btn-info" (click)="fetch()">Fetch</button>
-  </div>
-  <div>
-    
-    <pre>{{stateFromStore|json}}</pre>
-  </div>
-
+  <fieldset>
+    <legend>save application state</legend>
+    <div>
+      <button class="btn btn-warning" (click)="onSave$.next($event)">Save</button>
+      <div *ngIf="loading$|async">Saving...</div>
+    </div>
+  </fieldset>
   <app-todo-container></app-todo-container>
   <app-tree-container></app-tree-container>
 </div>

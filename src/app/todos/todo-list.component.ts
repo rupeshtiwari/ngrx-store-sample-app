@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Path } from 'app/reducers/todo';
+import { Path } from 'app/core/models/common';
 
 @Component({
     selector: 'app-todo-list',
@@ -17,9 +17,8 @@ import { Path } from 'app/reducers/todo';
 
 export class TodoListComponent {
     @Input() todos;
-    @Output() toggleTodo = new EventEmitter<Path>();
+    @Output() toggleTodo = new EventEmitter<string>();
     constructor() {
-       // console.log('initialized', 'TodoListComponent');
     }
 }
 

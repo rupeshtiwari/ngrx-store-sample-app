@@ -21,10 +21,12 @@ export const saveAppState = (state) => save(getKey(), state);
 
 @Injectable()
 export class LocalStorageService {
+  key:string;
   getAppState(key: string) {
-    return of(getState(getKey()));
+    this.key = key;
+    return of(getState(key));
   }
   saveAppState(state) {
-    return save(getKey(), state);
+    return save(this.key, state);
   }
 }

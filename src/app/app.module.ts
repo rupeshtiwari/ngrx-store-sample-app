@@ -22,11 +22,15 @@ import { TreeContainerComponent } from 'app/tree/tree-container.component';
 import { MyErrorHandler } from './error-handler';
 import { CoreModule } from 'app/core/core.module';
 import { routes } from 'app/app.routes';
+import { AutoSaveContainerComponent } from './home/auto-save-container.component';
+import { HomeContainerComponent } from './home/home-container.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeContainerComponent,
+    AutoSaveContainerComponent,
     NewTodoInputComponent,
     TodoComponent,
     TodoListComponent,

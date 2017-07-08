@@ -1,11 +1,27 @@
 <div class="container">
-  <fieldset>
-    <legend>save application state</legend>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NgRx/Store/SampleApp</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <!--<li class="active"><a href="#">Home</a></li>-->
+        <li routerLinkActive="active" [routerLink]="['tree']" routerLinkActiveOptions="{exact:true}"><a >Tree</a></li>
+        <li routerLinkActive="active" routerLinkActiveOptions="{exact:true}" [routerLink]="['todo']"><a >Todo</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+
+  <footer>
     <div>
-      <button class="btn btn-warning" (click)="onSave$.next($event)">Save</button>
+      <button class="btn btn-danger" (click)="onSave$.next($event)">Save State</button>
       <div *ngIf="loading$|async">Saving...</div>
     </div>
-  </fieldset>
-  <app-todo-container></app-todo-container>
-  <app-tree-container></app-tree-container>
+  </footer>
 </div>

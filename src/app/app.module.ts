@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule, INITIAL_STATE } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
@@ -20,6 +21,7 @@ import { TreeContainerComponent } from 'app/tree/tree-container.component';
 
 import { MyErrorHandler } from './error-handler';
 import { CoreModule } from 'app/core/core.module';
+import { routes } from 'app/app.routes';
 
 
 @NgModule({
@@ -34,10 +36,12 @@ import { CoreModule } from 'app/core/core.module';
     TreeContainerComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    CoreModule
+    CoreModule,
+    RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [{ provide: ErrorHandler, useClass: MyErrorHandler }],
   bootstrap: [AppComponent],

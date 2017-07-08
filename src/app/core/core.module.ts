@@ -11,12 +11,14 @@ import { reducer } from 'app/core/store';
 import { SaveEffects } from 'app/core/store/save/save.effects';
 import { TreeEffects } from 'app/core/store/tree/tree.effects';
 import { RestoreEffects } from 'app/core/store/restore/restore.effects';
+import { RouterStoreModule } from '@ngrx/router-store';
 
 
 @NgModule({
     imports: [CommonModule,
         StoreModule.provideStore(reducer),
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
+        RouterStoreModule.connectRouter(),
         EffectsModule.run(SaveEffects),
         EffectsModule.run(TreeEffects),
         EffectsModule.run(RestoreEffects)

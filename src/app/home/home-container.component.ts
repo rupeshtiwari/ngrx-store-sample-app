@@ -45,7 +45,6 @@ export class HomeContainerComponent implements OnDestroy {
         this._key$ = route.params.map(p => p.id)
             .subscribe(id =>
                 store.dispatch(saveActions.restoreAppState(id)));
-       
     }
     ngOnDestroy() {
         if (this._key$) {

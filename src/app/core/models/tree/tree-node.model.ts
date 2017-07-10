@@ -9,6 +9,7 @@ export class TreeNode {
     public nodes: TreeNode[];
     public expanded: boolean;
     public selected: boolean;
+    public isParent: boolean;
     fromValues(values: TreeNode) {
         return Object.assign(this, values);
     }

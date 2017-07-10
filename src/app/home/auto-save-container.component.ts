@@ -13,16 +13,13 @@ import { getAppState } from 'app/core/services/local-storage.service';
 
 @Component({
     selector: 'app-auto-save',
-    template: `
-    
-  `
-//   ` <footer>
-//     <div>
-//       <button class="btn btn-danger" (click)="onSave$.next($event)">Save State</button>
-//       <div *ngIf="loading$|async">Saving...</div>
-//     </div>
-//   </footer>
-//   `
+    template: ` <footer>
+        <div>
+          <button class="btn btn-danger" (click)="onSave$.next($event)">Save State</button>
+          <div *ngIf="loading$|async">Saving...</div>
+        </div>
+      </footer>
+      `
 })
 
 export class AutoSaveContainerComponent implements OnDestroy {
@@ -37,17 +34,15 @@ export class AutoSaveContainerComponent implements OnDestroy {
         private route: ActivatedRoute,
         private store: Store<fromRoot.State>
     ) {
-
         this.appState$ = store.select(fromRoot.getAppState);
         this.loading$ = store.select(fromRoot.getSaveStateLoading);
         this._onSave$ = this.onSave$.withLatestFrom(this.appState$).subscribe(([event, appState]) => this.saveAppState(appState));
-        Observable.timer(0, 10000).withLatestFrom(this.appState$).subscribe(([t, s]) => this.saveAppState(s));
+        Observable.timer(0, 11000).withLatestFrom(this.appState$).subscribe(([t, s]) => this.saveAppState(s));
     }
     saveAppState(appState) {
         this.store.dispatch(saveActions.saveAppState(appState));
     }
     ngOnDestroy() {
-
         if (this._onSave$) {
             this._onSave$.unsubscribe();
         }

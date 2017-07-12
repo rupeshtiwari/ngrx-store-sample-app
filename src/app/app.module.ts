@@ -24,6 +24,8 @@ import { CoreModule } from 'app/core/core.module';
 import { routes } from 'app/app.routes';
 import { AutoSaveContainerComponent } from './home/auto-save-container.component';
 import { HomeContainerComponent } from './home/home-container.component';
+import { SharedModule } from "app/shared/shared.module";
+import { LauncherComponent } from "app/home/launcher.component";
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { HomeContainerComponent } from './home/home-container.component';
     TodoContainerComponent,
     TreeNodeComponent,
     TreeNodeListComponent,
-    TreeContainerComponent
+    TreeContainerComponent,
+    LauncherComponent
   ],
   imports: [
     RouterModule,
@@ -45,6 +48,7 @@ import { HomeContainerComponent } from './home/home-container.component';
     FormsModule,
     HttpModule,
     CoreModule,
+    SharedModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [{ provide: ErrorHandler, useClass: MyErrorHandler }],

@@ -27,6 +27,7 @@ import * as fromRoot from 'app/core/store';
     </div>
   </nav>
 <router-outlet></router-outlet>
+ <app-auto-save>  </app-auto-save>
 `
 })
 

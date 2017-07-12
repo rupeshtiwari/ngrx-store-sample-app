@@ -9,6 +9,7 @@ import {
     addChildrens, initialState,
     SourceType, collapseNode
 } from 'app/core/models/tree';
+import { log } from 'app/core/services/logger.service';
 
 export const reducer = (state = initialState, action: Action) => {
     switch (action.type) {

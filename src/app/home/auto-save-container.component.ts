@@ -28,7 +28,7 @@ export class AutoSaveContainerComponent implements OnDestroy {
     onSave$: Subject<any> = new Subject<any>();
     appState$: Observable<State>;
     loading$: Observable<boolean>;
-
+    timer$: any;
     _onSave$: any;
     constructor(
         private route: ActivatedRoute,
@@ -37,7 +37,7 @@ export class AutoSaveContainerComponent implements OnDestroy {
         this.appState$ = store.select(fromRoot.getAppState);
         this.loading$ = store.select(fromRoot.getSaveStateLoading);
         this._onSave$ = this.onSave$.withLatestFrom(this.appState$).subscribe(([event, appState]) => this.saveAppState(appState));
-        Observable.timer(0, 11000).withLatestFrom(this.appState$).subscribe(([t, s]) => this.saveAppState(s));
+        this.timer$ = Observable.timer(0, 100000).withLatestFrom(this.appState$).subscribe(([t, s]) => this.saveAppState(s));
     }
     saveAppState(appState) {
         this.store.dispatch(saveActions.saveAppState(appState));
@@ -45,6 +45,9 @@ export class AutoSaveContainerComponent implements OnDestroy {
     ngOnDestroy() {
         if (this._onSave$) {
             this._onSave$.unsubscribe();
+        }
+        if (this.timer$) {
+            this.timer$.unsubscrbe();
         }
     }
 }

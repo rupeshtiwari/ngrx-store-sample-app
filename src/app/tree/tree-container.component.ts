@@ -11,18 +11,21 @@ import { Subject } from 'rxjs/Subject';
     selector: 'app-tree-container',
     template: `
     
-    <fieldset>
-        <legend >Tree App</legend>
+    <fieldset tabindex="-1">
+        <legend >Aria Compliant Tree View</legend>
             <div>
                 <button class="btn btn-success"  (click)="onLoadTreeClick$.next()">Load Tree</button>
             </div>
             <div >
-                <app-tree-node-list  [nodes]="allNodes$|async"  role="tree" aria-labelledby="ta">
+                <app-tree-node-list  [nodes]="allNodes$|async"  role="tree">
                 </app-tree-node-list>
             </div>
     </fieldset>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
+    , styles: [`
+ :focus { outline: none }
+        `]
 })
 
 export class TreeContainerComponent {

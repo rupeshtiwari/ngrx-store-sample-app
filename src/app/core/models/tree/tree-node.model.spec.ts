@@ -1,6 +1,13 @@
 import { addChildrens } from 'app/core/models/tree/tree-node.model';
+import { focusNode } from 'app/core/models/tree';
 
 describe('TreeNodeModel', () => {
+    it('can focus node', () => {
+        const node = { node: { focused: false, tabInde: -1 } };
+        const expectedNode = { node: { focused: true, tabInde: 0 } };
+        const result = focusNode(['node'])(node);
+        expect(result).toEqual(expectedNode);
+    });
     it('can add childrens', () => {
         const path = ['nodes', 0];
         const nodelist = {

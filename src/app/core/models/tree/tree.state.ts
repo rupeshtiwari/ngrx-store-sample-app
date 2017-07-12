@@ -6,6 +6,7 @@ export interface State {
     loading: boolean;
     selectedPath?: Path;
     nodes: TreeNode[];
+    focusedPath?: Path;
 }
 
 export const initialState = {

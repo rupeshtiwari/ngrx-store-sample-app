@@ -16,7 +16,7 @@ import * as fromRoot from 'app/core/store';
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">NgRx/Store/SampleApp</a>
+        <a class="navbar-brand" href="#">NgRx-Store-Sample-App</a>
       </div>
       <ul class="nav navbar-nav">
        

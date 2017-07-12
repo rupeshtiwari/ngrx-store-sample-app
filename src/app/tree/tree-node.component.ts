@@ -1,10 +1,12 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy, OnChanges, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, 
+    OnChanges, AfterViewInit, ElementRef,
+     ViewChild, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { TreeEvents } from 'app/tree/tree-events';
 import { SourceType } from 'app/core/models/tree';
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from 'rxjs/Subscription';
 @Component({
     selector: 'app-tree-node',
     template: `

@@ -11,7 +11,7 @@ import {
 } from 'app/core/models/tree';
 import { log } from 'app/core/services/logger.service';
 
-export const reducer = (state = initialState, action: Action) => {
+export function reducer(state = initialState, action: Action) {
     switch (action.type) {
         case fromActions.SELECT_EXPAND: {
             if (!action.payload.hasChildrens) { return state; }

@@ -9,7 +9,7 @@ import * as fromActions from '../actions/todo.actions';
 import { initialState } from 'app/core/models/todo';
 
 
-export const reducer = (state = initialState, action: Action) => {
+export function reducer(state = initialState, action: Action) {
     switch (action.type) {
         case fromActions.ADD_TODO:
             const appendNewTodo = (todos) => append(action.payload, todos);

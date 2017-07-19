@@ -18,6 +18,7 @@ export function reducer(state = initialState, action: Action) {
             const toggleComplete = evolve({ complete: not });
             const isCurrentTodo = propSatisfies(x => x === action.payload, 'id');
             const toggleTodo = map(when(isCurrentTodo, toggleComplete));
+            
             return over(lensPath(['todos']), toggleTodo, state);
         default:
             return state;
